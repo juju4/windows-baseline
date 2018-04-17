@@ -1,0 +1,6 @@
+# These settings change the defaults for this baseline to align to CIS
+
+# CIS '18.9.84.1'
+powershellblocklogging_enabled: false
+# CIS '18.9.84.2'
+powershelltranscription_enabled: false
