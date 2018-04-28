@@ -1,4 +1,4 @@
-msoffice_present: true
+#msoffice_present: true
 flash_present: true
 credentialguard_present: true
 laps_present: true

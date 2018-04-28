@@ -5,6 +5,9 @@ control 'cis-account-lockout-duration-1.2.1' do
   impact 0.7
   title '1.2.1 Set Account lockout duration to 15 or more minutes'
   desc 'Set Account lockout duration to 15 or more minutes'
+  tag cis: ['windows_2012r2:1.2.1', 'windows_2016:1.2.1', 'level1']
+  ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+  ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
   describe security_policy do
     its('LockoutDuration') { should be >= 15 }
   end
@@ -14,6 +17,9 @@ control 'cis-account-lockout-threshold-1.2.2' do
   impact 0.7
   title '1.2.2 Set Account lockout threshold to 10 or fewer invalid logon attempts but not 0'
   desc 'Set Account lockout threshold to 10 or fewer invalid logon attempts but not 0'
+  tag cis: ['windows_2012r2:1.2.2', 'windows_2016:1.2.2', 'level1']
+  ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+  ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
   describe security_policy do
     its('LockoutBadCount') { should be <= 10 }
     its('LockoutBadCount') { should be > 0 }
@@ -24,6 +30,9 @@ control 'cis-reset-account-lockout-1.2.3' do
   impact 0.7
   title '1.2.3 Set Reset account lockout counter after to 15 or more minutes'
   desc 'Set Reset account lockout counter after to 15 or more minutes'
+  tag cis: ['windows_2012r2:1.2.3', 'windows_2016:1.2.3', 'level1']
+  ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+  ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
   describe security_policy do
     its('ResetLockoutCount') { should be >= 15 }
   end
@@ -52,10 +61,10 @@ end
 control 'windows-account-102' do
   impact 1.0
   title 'Windows Password Complexity is Enabled'
-  tag cis: ['windows_2012r2:1.1.5', 'windows_2016:1.1.5']
+  tag cis: ['windows_2012r2:1.1.5', 'windows_2016:1.1.5', 'level1']
+  ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+  ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
   ref 'Password must meet complexity requirements', url: 'https://technet.microsoft.com/en-us/library/hh994562(v=ws.11).aspx'
-  ref 'CIS Microsoft Windows Server 2012 R2 Benchmark'
-  ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark'
   describe security_policy do
     its('PasswordComplexity') { should eq 1 }
   end

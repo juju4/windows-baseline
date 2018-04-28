@@ -37,8 +37,9 @@ else
     impact 1.0
     title 'PowerShell Script Block Logging'
     desc 'Disabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts'
-    tag cis: '18.9.84.1'
-    ref 'CIS Microsoft Windows Server 2012 R2 Benchmark', url: 'https://benchmarks.cisecurity.org/tools2/windows/CIS_Microsoft_Windows_Server_2012_R2_Benchmark_v2.2.1.pdf'
+    tag cis: ['windows_2012r2:18.9.95.1', 'windows2016:18.9.84.1', 'level1']
+    ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+    ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
     describe registry_key('HKLM\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging') do
       it { should exist }
       its('EnableScriptBlockLogging') { should eq 0 }
@@ -63,8 +64,9 @@ else
     impact 1.0
     title 'PowerShell Transcription'
     desc 'Transcription creates a unique record of every PowerShell session, including all input and output, exactly as it appears in the session.'
-    tag cis: '18.9.84.2'
-    ref 'CIS Microsoft Windows Server 2012 R2 Benchmark', url: 'https://benchmarks.cisecurity.org/tools2/windows/CIS_Microsoft_Windows_Server_2012_R2_Benchmark_v2.2.1.pdf'
+    tag cis: ['windows_2012r2:18.9.95.2', 'windows2016:18.9.84.2', 'level1']
+    ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+    ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
     describe registry_key('HKLM\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\PowerShell\Transcription') do
       it { should exist }
       its('EnableTranscripting') { should eq 0 }
