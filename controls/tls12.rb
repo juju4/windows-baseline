@@ -1,5 +1,5 @@
 
-tls12_check = attribute('tls12_check', default: false, description: 'Should we control that TLS 1.2 Support is enabled - Ws2008+')
+tls12_check = attribute('tls12_check', default: true, description: 'Should we control that TLS 1.2 Support is enabled - Ws2008+')
 
 if tls12_check
   title 'TLS 1.2 support'
