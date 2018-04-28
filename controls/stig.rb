@@ -10,4 +10,3 @@ control 'V-63577' do
     its('\\*\SYSVOL') { should eq 'RequireMutualAuthentication=1, RequireIntegrity=1' }
   end
 end
-

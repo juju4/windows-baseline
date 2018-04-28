@@ -5,10 +5,10 @@ control 'windows-audit-100' do
   impact 0.1
   title 'Configure System Event Log (Application)'
   desc 'Only applies for Windows 2008 and newer'
-#  describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Application') do
-#    it { should exist }
-#    its('MaxSize') { should_not eq nil }
-#  end
+  # describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Application') do
+  #  it { should exist }
+  #  its('MaxSize') { should_not eq nil }
+  # end
   ## Win7
   describe registry_key('HKLM\System\CurrentControlSet\Services\EventLog\Application') do
     it { should exist }
@@ -21,10 +21,10 @@ control 'windows-audit-101' do
   impact 0.1
   title 'Configure System Event Log (Security)'
   desc 'Only applies for Windows 2008 and newer'
-#  describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Security') do
-#    it { should exist }
-#    its('MaxSize') { should_not eq nil }
-#  end
+  # describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Security') do
+  #   it { should exist }
+  #   its('MaxSize') { should_not eq nil }
+  # end
   describe registry_key('HKLM\System\CurrentControlSet\Services\EventLog\Security') do
     it { should exist }
     its('MaxSize') { should_not eq nil }
@@ -36,10 +36,10 @@ control 'windows-audit-102' do
   impact 0.1
   title 'Configure System Event Log (Setup)'
   desc 'Only applies for Windows 2008 and newer'
-#  describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Setup') do
-#    it { should exist }
-#    its('MaxSize') { should_not eq nil }
-#  end
+  # describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Setup') do
+  #  it { should exist }
+  #  its('MaxSize') { should_not eq nil }
+  # end
   describe registry_key('HKLM\System\CurrentControlSet\Services\EventLog\Setup') do
     it { should exist }
     its('MaxSize') { should_not eq nil }
@@ -51,10 +51,10 @@ control 'windows-audit-103' do
   impact 0.1
   title 'Configure System Event Log (System)'
   desc 'Only applies for Windows 2008 and newer'
-#  describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\System') do
-#    it { should exist }
-#    its('MaxSize') { should_not eq nil }
-#  end
+  # describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\System') do
+  #  it { should exist }
+  #  its('MaxSize') { should_not eq nil }
+  # end
   describe registry_key('HKLM\System\CurrentControlSet\Services\EventLog\System') do
     it { should exist }
     its('MaxSize') { should_not eq nil }
@@ -66,10 +66,10 @@ control 'windows-audit-104' do
   impact 0.1
   title 'Configure System Event Log (Windows PowerShell)'
   desc 'Only applies for Windows 2008 and newer'
-#  describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Windows PowerShell') do
-#    it { should exist }
-#    its('MaxSize') { should_not eq nil }
-#  end
+  # describe registry_key('HKLM\Software\Policies\Microsoft\Windows\EventLog\Windows PowerShell') do
+  #  it { should exist }
+  #  its('MaxSize') { should_not eq nil }
+  # end
   describe registry_key('HKLM\System\CurrentControlSet\Services\EventLog\Windows PowerShell') do
     it { should exist }
     its('MaxSize') { should_not eq nil }
