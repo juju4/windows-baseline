@@ -67,6 +67,7 @@ title 'Windows Certificates store'
 control 'certificates-100' do
   impact 1.0
   title 'Verify the content of Windows certificate store'
+  desc 'Ensure CA store contains minimal authorities and not some of known bad ones'
   ref url: 'https://support.microsoft.com/en-us/help/293781/trusted-root-certificates-that-are-required-by-windows-server-2008-r2,-by-windows-7,-by-windows-server-2008,-by-windows-vista,-by-windows-server-2003,-by-windows-xp,-and-by-windows-2000'
   describe powershell('dir cert:\ -rec') do
     # necessary and trusted root certificates
@@ -89,6 +90,7 @@ if windows_certificates_nogov
   control 'certificates-200' do
     impact 1.0
     title 'Ensure no governmental certificate authorities in store unless approved'
+    desc 'Ensure CA store contains only approved governmental authorities'
     describe powershell('dir cert:\ -rec') do
       windows_certificates_nogov_list.each do |cert|
         its('stdout') { should_not match cert.to_s }

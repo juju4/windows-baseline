@@ -6,6 +6,7 @@ if laps_present
   control 'laps-1' do
     impact 0.7
     title 'laps - local password management'
+    desc 'Ensure Microsoft LAPS is installed and Microsoft-signed'
     ref url: 'https://technet.microsoft.com/en-us/mt227395.aspx'
     ref url: 'https://adsecurity.org/?p=1790'
     ref url: 'http://www.petenetlive.com/KB/Article/0001059'
