@@ -17,11 +17,11 @@ windows_services_list = attribute(
 
 if windows_services_harden
   title 'Microsoft Windows services hardening'
-  desc 'Ensure non-relevant services are disabled'
 
   control 'services-1' do
     impact 0.7
     title 'Services to be disabled'
+    desc 'Ensure non-relevant services are disabled'
     windows_services_list.each do |svc|
       describe service(svc.to_s) do
         it { should_not be_running }
