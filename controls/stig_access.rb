@@ -5,6 +5,7 @@ title 'Windows Access Configuration - STIG'
 control 'windows-acl-100' do
   impact 1.0
   title 'Verify the Windows folder permissions are properly set'
+  desc 'Ensure Windows folder is writable by Administrators but not Users'
   describe file('c:/windows') do
     it { should be_directory }
     it { should be_writable.by('Administrator') }

@@ -17,6 +17,7 @@ windows_services_list = attribute(
 
 if windows_services_harden
   title 'Microsoft Windows services hardening'
+  desc 'Ensure non-relevant services are disabled'
 
   control 'services-1' do
     impact 0.7
