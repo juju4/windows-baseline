@@ -7,7 +7,7 @@ control 'windows-acl-100' do
   desc 'Ensure Windows folder is writable by Administrators but not Users'
   describe file('c:/windows') do
     it { should be_directory }
-## FIXME! `check_file_permission_by_mask` is not supported on Windows
+    ## FIXME! `check_file_permission_by_mask` is not supported on Windows
     # it { should be_writable.by('Administrator') }
     # it { should_not be_writable.by('Users') }
   end
@@ -33,7 +33,7 @@ control 'windows-acl-101' do
   ref url: 'https://www.stigviewer.com/stig/windows_10/2016-11-03/finding/V-63373'
   describe file('c:') do
     it { should be_directory }
-## FIXME! `check_file_permission_by_mask` is not supported on Windows
+    ## FIXME! `check_file_permission_by_mask` is not supported on Windows
     # it { should be_writable.by('Administrator') }
     # it { should be_writable.by('SYSTEM') }
     # it { should_not be_writable.by('Users') }
