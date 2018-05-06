@@ -1,5 +1,27 @@
 title 'STIG'
 
+control 'V-63375' do
+  impact 1.0
+  title 'The Windows Remote Management (WinRM) service must not store RunAs credentials.'
+  desc 'Storage of administrative credentials could allow unauthorized access. Disallowing the storage of RunAs credentials for Windows Remote Management will prevent them from being used with plug-ins.'
+  ref url: 'https://www.stigviewer.com/stig/windows_10/2017-02-21/finding/V-63375'
+  describe registry_key('HKLM\Software\Policies\Microsoft\Windows\WinRM\Service') do
+    it { should exist }
+    its('DisableRunAs') { should eq 1 }
+  end
+end
+
+control 'V-63657' do
+  impact 1.0
+  title 'Unauthenticated RPC clients must be restricted from connecting to the RPC server.'
+  desc 'Configuring RPC to restrict unauthenticated RPC clients from connecting to the RPC server will prevent anonymous connections.'
+  ref url: 'https://www.stigviewer.com/stig/windows_10/2015-11-30/finding/V-63657'
+  describe registry_key('HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Rpc') do
+    it { should exist }
+    its('RestrictRemoteClients') { should eq 1 }
+  end
+end
+
 control 'V-63679' do
   impact 1.0
   title 'Administrator accounts must not be enumerated during elevation.'
@@ -19,6 +41,17 @@ control 'V-63683' do
   describe registry_key('HKLM\Software\Policies\Microsoft\Windows\DataCollection') do
     it { should exist }
     its('AllowTelemetry') { should eq 1 }
+  end
+end
+
+control 'V-63705' do
+  impact 1.0
+  title 'InPrivate browsing in Microsoft Edge must be disabled.'
+  desc 'The InPrivate browsing feature in Microsoft Edge prevents the storing of history, cookies, temporary Internet files, or other data. Disabling this feature maintains this data for review as necessary.'
+  ref url: 'https://www.stigviewer.com/stig/windows_10/2015-11-30/finding/V-63705'
+  describe registry_key('HKLM\Software\Policies\Microsoft\MicrosoftEdge\Main') do
+    it { should exist }
+    its('AllowInPrivate') { should eq 0 }
   end
 end
 
