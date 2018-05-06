@@ -126,9 +126,10 @@ control 'V-63795' do
   title 'Kerberos encryption types must be configured to prevent the use of DES and RC4 encryption suites.'
   desc 'Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for Kerberos, preventing the use of the DES and RC4 encryption suites.'
   ref url: 'https://www.stigviewer.com/stig/windows_10/2015-11-30/finding/V-63795'
+  ref url: 'https://blogs.technet.microsoft.com/petergu/2013/04/14/interpreting-the-supportedencryptiontypes-registry-key/'
   describe registry_key('HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters') do
     it { should exist }
-    its('SupportedEncryptionTypes') { should eq 2_147_483_640 }
+    its('SupportedEncryptionTypes') { should >= 2_147_483_640 }
   end
 end
 
