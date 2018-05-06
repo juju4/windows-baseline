@@ -12,8 +12,16 @@ control 'windows-acl-100' do
     # it { should_not be_writable.by('Users') }
   end
   describe powershell('Get-Acl -Path "C:\windows" | fl') do
-    its('stdout') { should include 'BUILTIN\Administrators Allow  268435546' }
+    its('stdout') { should include 'Owner  : NT SERVICE\TrustedInstaller' }
+    its('stdout') { should include 'NT AUTHORITY\SYSTEM Allow  268435456' }
+    its('stdout') { should include 'NT AUTHORITY\SYSTEM Allow  Modify, Synchronize' }
+    its('stdout') { should include 'BUILTIN\Administrators Allow  268435456' }
+    its('stdout') { should include 'BUILTIN\Administrators Allow  Modify, Synchronize' }
     its('stdout') { should include 'BUILTIN\Users Allow  -1610612736' }
+    its('stdout') { should include 'BUILTIN\Users Allow  ReadAndExecute, Synchronize' }
+    its('stdout') { should include 'NT SERVICE\TrustedInstaller Allow  268435456' }
+    its('stdout') { should include 'NT SERVICE\TrustedInstaller Allow  FullControl' }
+    its('stdout') { should include 'CREATOR OWNER Allow  268435456' }
   end
   describe command('icacls "c:\Windows"') do
     its('stdout') { should include 'NT AUTHORITY\SYSTEM:(M)' }
@@ -39,7 +47,7 @@ control 'windows-acl-101' do
     # it { should_not be_writable.by('Users') }
   end
   describe command('icacls "c:\"') do
-    its('stdout') { should include 'NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(M)' }
+    # its('stdout') { should include 'NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(M)' }
     its('stdout') { should include 'NT AUTHORITY\SYSTEM:(OI)(CI)(F)' }
     its('stdout') { should include 'BUILTIN\Administrators:(OI)(CI)(F)' }
     its('stdout') { should include 'BUILTIN\Users:(OI)(CI)(RX)' }
@@ -70,10 +78,13 @@ control 'windows-acl-200' do
   #   it { should_not be_writable.by('Users') }
   # end
   describe powershell('Get-Acl "HKLM:\System" | fl') do
+    its('stdout') { should include 'NT AUTHORITY\SYSTEM Allow  FullControl' }
+    its('stdout') { should include 'NT AUTHORITY\SYSTEM Allow  268435456' }
     its('stdout') { should include 'BUILTIN\Administrators Allow  FullControl' }
-    its('stdout') { should include 'BUILTIN\Administrators Allow  268435546' }
+    its('stdout') { should include 'BUILTIN\Administrators Allow  268435456' }
     its('stdout') { should include 'BUILTIN\Users Allow  ReadKey' }
     its('stdout') { should include 'BUILTIN\Users Allow  -2147483648' }
+    its('stdout') { should include 'APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES Allow  ReadKey' }
   end
   # describe registry_key('HKLM\Software') do
   #   it { should exist }
