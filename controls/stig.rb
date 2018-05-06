@@ -22,6 +22,17 @@ control 'V-63657' do
   end
 end
 
+control 'V-63669' do
+  impact 1.0
+  title 'The machine inactivity limit must be set to 15 minutes, locking the system with the screensaver.'
+  desc ''
+  ref url: 'https://www.stigviewer.com/stig/windows_10/2016-06-24/finding/V-63669'
+  describe registry_key('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System') do
+    it { should exist }
+    its('InactivityTimeoutSecs') { should eq 900 }
+  end
+end
+
 control 'V-63679' do
   impact 1.0
   title 'Administrator accounts must not be enumerated during elevation.'
@@ -107,6 +118,17 @@ control 'V-63767' do
   describe registry_key('HKLM\System\CurrentControlSet\Control\LSA\pku2u') do
     it { should exist }
     its('AllowOnlineID') { should eq 0 }
+  end
+end
+
+control 'V-63795' do
+  impact 1.0
+  title 'Kerberos encryption types must be configured to prevent the use of DES and RC4 encryption suites.'
+  desc 'Certain encryption types are no longer considered secure. This setting configures a minimum encryption type for Kerberos, preventing the use of the DES and RC4 encryption suites.'
+  ref url: 'https://www.stigviewer.com/stig/windows_10/2015-11-30/finding/V-63795'
+  describe registry_key('HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters') do
+    it { should exist }
+    its('SupportedEncryptionTypes') { should eq 2147483640 }
   end
 end
 
