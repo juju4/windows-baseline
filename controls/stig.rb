@@ -128,7 +128,7 @@ control 'V-63795' do
   ref url: 'https://www.stigviewer.com/stig/windows_10/2015-11-30/finding/V-63795'
   describe registry_key('HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters') do
     it { should exist }
-    its('SupportedEncryptionTypes') { should eq 2147483640 }
+    its('SupportedEncryptionTypes') { should eq 2_147_483_640 }
   end
 end
 
