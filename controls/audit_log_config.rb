@@ -100,7 +100,7 @@ end
 control 'windows-audit-107' do
   impact 0.1
   title 'Configure System Event Log (Channels - Sysmon)'
-  describe registry_key('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon') do
+  describe registry_key('HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational') do
     it { should exist }
     its('MaxSize') { should_not eq nil }
     its('MaxSize') { should >= 315801600 }
