@@ -23,7 +23,7 @@ control 'cis-maximum-password-age-1.1.2' do
   ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
   describe security_policy do
     its('MaximumPasswordAge') { should be <= 60 }
-    its('MaximumPasswordAge') { should be > 0 }
+    its('MaximumPasswordAge') { should be.positive? }
   end
 end
 

@@ -23,7 +23,7 @@ control 'cis-account-lockout-threshold-1.2.2' do
   ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
   describe security_policy do
     its('LockoutBadCount') { should be <= 10 }
-    its('LockoutBadCount') { should be > 0 }
+    its('LockoutBadCount') { should be.positive? }
   end
 end
 
