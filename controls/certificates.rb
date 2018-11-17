@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 windows_certificates_nogov = attribute('windows_certificates_nogov', default: true, description: 'Ensure no certificates from a governmental entity')
 ## from Windows Participants: https://gallery.technet.microsoft.com/Trusted-Root-Certificate-123665ca

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 laps_present = attribute('laps_present', default: true, description: 'Should we control presence of Microsoft laps')
 

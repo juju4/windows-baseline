@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 title 'STIG'
 
 control 'V-63375' do

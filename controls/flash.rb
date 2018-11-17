@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 flash_present = attribute('flash_present', default: false, description: 'Should we control presence of Adobe Flash hardening')
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 wsus_check = attribute('wsus_check', default: false, description: 'Should we control configuration of WSUS server')
 

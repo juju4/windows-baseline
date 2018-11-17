@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 tls12_check = attribute('tls12_check', default: true, description: 'Should we control that TLS 1.2 Support is enabled - Ws2008+')
 

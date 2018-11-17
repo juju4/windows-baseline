@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 ipv6_tunnels = attribute('ipv6_tunnels', default: false, description: 'Should IPv6 tunnels be present')
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 emet_present = attribute('emet_present', default: false, description: 'Should we control presence of Microsoft EMET')
 

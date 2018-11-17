@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 credentialguard_present = attribute('credentialguard_present', default: false, description: 'Should we control presence of Microsoft Win10 Credential Guard')
 

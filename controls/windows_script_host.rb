@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 title 'Windows Script Host (WSH)'
 
