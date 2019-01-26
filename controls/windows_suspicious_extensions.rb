@@ -49,7 +49,7 @@ end
 
 if windows_suspicous_fileassoc_hkcr_check
   control 'fileassoc-102' do
-   impact 1.0
+    impact 1.0
     title 'Review potentially dangerous extensions association - HKCR'
     ref url: 'https://bluesoul.me/2016/05/12/use-gpo-to-change-the-default-behavior-of-potentially-malicious-file-extensions/'
     windows_suspicous_fileassoc.each do |fileassoc|
