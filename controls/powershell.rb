@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-title 'Windows PowerShell'
-
 powershellblocklogging_enabled = attribute('powershellblocklogging_enabled', default: true, description: 'Should we control Powershell Script Block Logging as enabled or not')
 powershelltranscription_enabled = attribute('powershelltranscription_enabled', default: true, description: 'Should we control Powershell Transcription as enabled or not')
+windows_powershellv2feature = attribute('windows_powershellv2feature', default: true, description: 'Should we check that powershellv2 feature is removed')
+
+title 'Windows PowerShell'
 
 ## FIXME! can we test powershell v5+ is installed? seems only windows_feature
 
@@ -75,23 +76,25 @@ else
   end
 end
 
-control 'powershell-remove-v2' do
-  impact 1.0
-  title 'PowerShell v2 not present'
-  desc 'Avoid attacks downgrading Powershell v2 by uninstalling older releases'
-  ref url: 'http://www.leeholmes.com/blog/2017/03/17/detecting-and-preventing-powershell-downgrade-attacks/'
-  # no DSIM on default win10?
-  # describe command('DSIM /online /get-feature /format-table | findstr /i MicrosoftWindowsPowerShellV2 | findstr Disabled') do
-  #   its('stdout') { should_not eq '' }
-  # end
-  # describe command('DSIM /online /get-feature /format-table | findstr /i MicrosoftWindowsPowerShellV2Root | findstr Disabled') do
-  #   its('stdout') { should_not eq '' }
-  # end
-  describe powershell('Get-WindowsOptionalFeature -Online | where FeatureName -eq MicrosoftWindowsPowerShellV2') do
-    # Disabled or DisablePending
-    its('stdout') { should include 'Disable' }
+if windows_powershellv2feature
+  control 'powershell-remove-v2' do
+    impact 1.0
+    title 'PowerShell v2 not present'
+    desc 'Avoid attacks downgrading Powershell v2 by uninstalling older releases'
+    ref url: 'http://www.leeholmes.com/blog/2017/03/17/detecting-and-preventing-powershell-downgrade-attacks/'
+    # no DSIM on default win10?
+    # describe command('DSIM /online /get-feature /format-table | findstr /i MicrosoftWindowsPowerShellV2 | findstr Disabled') do
+    #   its('stdout') { should_not eq '' }
+    # end
+    # describe command('DSIM /online /get-feature /format-table | findstr /i MicrosoftWindowsPowerShellV2Root | findstr Disabled') do
+    #   its('stdout') { should_not eq '' }
+    # end
+    describe powershell('Get-WindowsOptionalFeature -Online | where FeatureName -eq MicrosoftWindowsPowerShellV2') do
+      # Disabled or DisablePending
+      its('stdout') { should include 'Disable' }
+    end
+    # describe powershell('Get-WindowsOptionalFeature -Online | where FeatureName -eq MicrosoftWindowsPowerShellV2Root') do
+    #  its('stdout') { should include 'Disable' }
+    # end
   end
-  # describe powershell('Get-WindowsOptionalFeature -Online | where FeatureName -eq MicrosoftWindowsPowerShellV2Root') do
-  #  its('stdout') { should include 'Disable' }
-  # end
 end

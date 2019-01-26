@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+windows_networklogonrights = attribute('windows_networklogonrights', default: true, description: 'Should we check networklogonrights controls')
+
 title 'User Rights Assignment'
 
 control 'cis-access-cred-manager-2.2.1' do
@@ -14,15 +16,17 @@ control 'cis-access-cred-manager-2.2.1' do
   end
 end
 
-control 'cis-network-access-2.2.2' do
-  impact 0.7
-  title '2.2.2 Set Access this computer from the network'
-  desc 'Set Access this computer from the network'
-  tag cis: ['windows_2012r2:2.2.2', 'windows_2016:2.2.2', 'level1']
-  ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
-  ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
-  describe security_policy do
-    its('SeNetworkLogonRight') { should eq ['S-1-0-0'] }
+if windows_networklogonrights
+  control 'cis-network-access-2.2.2' do
+    impact 0.7
+    title '2.2.2 Set Access this computer from the network'
+    desc 'Set Access this computer from the network'
+    tag cis: ['windows_2012r2:2.2.2', 'windows_2016:2.2.2', 'level1']
+    ref 'CIS Microsoft Windows Server 2012 R2 Benchmark v2.3.0'
+    ref 'CIS Microsoft Windows Server 2016 RTM (Release 1607) Benchmark v1.0.0'
+    describe security_policy do
+      its('SeNetworkLogonRight') { should eq ['S-1-0-0'] }
+    end
   end
 end
 
