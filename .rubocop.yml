@@ -4,7 +4,6 @@ AllCops:
   - vendor/**/*
   - "*/puppet/Puppetfile"
   - "*/puppet/.tmp/**/*"
-  TargetRubyVersion: 2.5
 Documentation:
   Enabled: false
 AlignParameters:
@@ -22,7 +21,7 @@ NumericLiterals:
 ScriptPermission:
   Enabled: false
 Metrics/BlockLength:
-  Max: 35
+  Max: 80
 Metrics/CyclomaticComplexity:
   Max: 10
 Metrics/PerceivedComplexity:
